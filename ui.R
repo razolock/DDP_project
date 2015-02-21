@@ -1,3 +1,7 @@
+library(ggplot2)
+library(grid)
+library(shiny)
+
 shinyUI(pageWithSidebar(
     headerPanel("Visualizing Quality"),
     sidebarPanel(

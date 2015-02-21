@@ -1,6 +1,6 @@
 library(ggplot2)
 library(grid)
-library(manipulate)
+library(shiny)
 
 shinyServer(
     function(input, output) {
