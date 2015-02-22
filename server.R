@@ -67,6 +67,7 @@ shinyServer(
                 geom_line(data = df, aes(x, y)) +
                 labs(x = "sigma", y = NULL) + 
                 scale_x_continuous(limits = c(-7, 7), breaks = -7:7) +
+                ylim(0, 0.4) +
                 guides(fill = FALSE) +
                 # green arrow
                 annotate("segment", x=-3, y=0.2, xend=-0.5, yend=0.15, 
@@ -90,7 +91,7 @@ shinyServer(
             zmax <- mu + sigma
             percent <- pnorm(zmax, mean = mu, sd = sd) - 
                 pnorm(zmin, mean = mu, sd = sd)
-            percent <- sprintf("%1.2f%%", 100*percent)
+            percent <- sprintf("%1.4f%%", 100*percent)
             paste("Percent of good results = ", as.character(percent))
             })
         
@@ -109,9 +110,9 @@ shinyServer(
                 pnorm(zmin, mean = mu, sd = sd)
             
             # calculate incorrect ppm
-            ppm <- round(1e6 - percent*1e6, 2)
-            paste("Number of defects = ", as.character(ppm), 
-                  " parts per million")
+            ppm <- round(1e6 - percent*1e6, 5)
+            paste("This process would produce ", as.character(ppm), 
+                  " defects per million opportunities.")
         })
     }
 )
